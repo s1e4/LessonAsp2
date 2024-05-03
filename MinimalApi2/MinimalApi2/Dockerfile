@@ -8,17 +8,17 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["MinimalApi2/MinimalApi2.csproj", "MinimalApi2/"]
-RUN dotnet restore "./MinimalApi2/MinimalApi2.csproj"
+COPY ["MinimalApi2/MApi2.csproj", "MinimalApi2/"]
+RUN dotnet restore "./MinimalApi2/MApi2.csproj"
 COPY . .
 WORKDIR "/src/MinimalApi2"
-RUN dotnet build "./MinimalApi2.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./MApi2.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./MinimalApi2.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./MApi2.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MinimalApi2.dll"]
+ENTRYPOINT ["dotnet", "MApi2.dll"]
