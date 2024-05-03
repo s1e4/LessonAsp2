@@ -1,5 +1,7 @@
 ﻿namespace MinimalApi2.Models
 {
+ 
+    //model
     public class Hotel
     {
         public int Id { get; set; }
