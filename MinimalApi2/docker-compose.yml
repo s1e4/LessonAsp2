@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  mapi2:
+    image: ${DOCKER_REGISTRY-}mapi2
+    build:
+      context: .
+      dockerfile: MinimalApi2/Dockerfile
