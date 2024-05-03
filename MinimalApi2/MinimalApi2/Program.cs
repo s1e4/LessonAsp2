@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using MinimalApi2.Auth;
+using MinimalApi2.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,13 +76,3 @@ app.MapDelete("/hotels/{id}", (int id) => {
 
 
 app.Run();
-
-
-
-public class Hotel
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public double Latitude { get; set; }
-    public double Longitude { get; set; }
-}
