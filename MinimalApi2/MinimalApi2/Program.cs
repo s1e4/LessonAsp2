@@ -57,8 +57,8 @@ app.MapGet("/login", [AllowAnonymous] async (HttpContext context,
 
 var hotels = new List<Hotel>();
 
-app.MapGet("/hotels", [Authorize] () => hotels);
-app.MapGet("/hotels/{id}", [Authorize] (int id) => hotels.FirstOrDefault(h => h.Id == id));
+app.MapGet("/hotels",  () => hotels);
+app.MapGet("/hotels/{id}",  (int id) => hotels.FirstOrDefault(h => h.Id == id));
 app.MapPost("/hotels", [Authorize] (Hotel hotel) => hotels.Add(hotel));
 app.MapPut("/hotels", (Hotel hotel) => {
     var index = hotels.FindIndex(h => h.Id == hotel.Id);
